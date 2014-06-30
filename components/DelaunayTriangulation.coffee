@@ -1,27 +1,46 @@
 noflo = require 'noflo'
-triangulate = require '../vendor/delaunay-triangulate'
+Delaunay = require '../vendor/delaunay.js'
 
 exports.getComponent = ->
   c = new noflo.Component
-
-  # Define a meaningful icon for component from http://fontawesome.io/icons/
   c.icon = 'cog'
+  c.description = 'Calculates de Delaunay triangulation of given points'
+  
+  c.x = []
+  c.y = []
 
-  # Provide a description on component usage
-  c.description = 'do X'
-
-  # Add input ports
-  c.inPorts.add 'in',
-    datatype: 'string'
-    process: (event, payload) ->
-      # What to do when port receives a packet
+  c.inPorts.add 'x',
+    datatype: 'array'
+    process: (event, x) ->
       return unless event is 'data'
-      console.log triangulate([[0,1],[1,0]])
-      c.outPorts.out.send payload
+      c.x = x
+      c.compute()
 
-  # Add output ports
-  c.outPorts.add 'out',
-    datatype: 'string'
+  c.inPorts.add 'y',
+    datatype: 'array'
+    process: (event, y) ->
+      return unless event is 'data'
+      c.y = y
+      c.compute()
 
-  # Finally return the component instance
+  c.outPorts.add 'x',
+    datatype: 'array'
+
+  c.outPorts.add 'y',
+    datatype: 'array'
+
+  c.compute = ->    
+    return unless c.outPorts.x.isAttached() and c.outPorts.y.isAttached()
+    return unless c.x? and c.y?
+
+    vertices = [[c.x[i], c.y[i]] for i in [0...c.x.length]][0]
+
+    ids = Delaunay.triangulate vertices
+
+    x = [vertices[i][0] for i in ids][0]
+    y = [vertices[i][1] for i in ids][0]
+    
+    c.outPorts.x.send x
+    c.outPorts.y.send y
+
   c

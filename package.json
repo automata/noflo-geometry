@@ -21,8 +21,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "noflo": "~0.5.0",
-    "delaunay-fast": "~1.0.1"
+    "noflo": "~0.5.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -37,5 +36,15 @@
     "grunt-noflo-manifest": "~0.1.11",
     "grunt-noflo-browser": "^0.1.1"
   },
-  "keywords": []
+  "keywords": [
+    "geometry",
+    "computational-geometry",
+    "delaunay",
+    "delaunay-triangulation"
+  ],
+  "noflo": {
+    "components": {
+      "DelaunayTriangulation": "components/DelaunayTriangulation.coffee"
+    }
+  }
 }

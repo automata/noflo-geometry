@@ -5,11 +5,25 @@
   "repo": "vilson/noflo-geometry",
   "version": "0.1.0",
   "keywords": [
+    "geometry",
+    "computational-geometry",
+    "delaunay",
+    "delaunay-triangulation"
   ],
   "dependencies": {
     "noflo/noflo": "*"
   },
   "scripts": [
-    "index.js"
+    "index.js",
+    "vendor/delaunay.js",
+    "components/DelaunayTriangulation.coffee"
+  ],
+  "noflo": {
+    "components": {
+      "DelaunayTriangulation": "components/DelaunayTriangulation.coffee"
+    }
+  },
+  "json": [
+    "component.json"
   ]
 }
