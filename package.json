@@ -44,7 +44,8 @@
   ],
   "noflo": {
     "components": {
-      "DelaunayTriangulation": "components/DelaunayTriangulation.coffee"
+      "ConstrainedDelaunay": "components/ConstrainedDelaunay.coffee",
+      "Delaunay": "components/Delaunay.coffee"
     }
   }
 }

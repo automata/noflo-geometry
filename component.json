@@ -16,11 +16,14 @@
   "scripts": [
     "index.js",
     "vendor/delaunay.js",
-    "components/DelaunayTriangulation.coffee"
+    "vendor/poly2tri.min.js",
+    "components/ConstrainedDelaunay.coffee",
+    "components/Delaunay.coffee"
   ],
   "noflo": {
     "components": {
-      "DelaunayTriangulation": "components/DelaunayTriangulation.coffee"
+      "ConstrainedDelaunay": "components/ConstrainedDelaunay.coffee",
+      "Delaunay": "components/Delaunay.coffee"
     }
   },
   "json": [
