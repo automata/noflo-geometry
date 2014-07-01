@@ -17,13 +17,16 @@
     "index.js",
     "vendor/delaunay.js",
     "vendor/poly2tri.min.js",
+    "vendor/rhill-voronoi-core.js",
     "components/ConstrainedDelaunay.coffee",
-    "components/Delaunay.coffee"
+    "components/Delaunay.coffee",
+    "components/Voronoi.coffee"
   ],
   "noflo": {
     "components": {
       "ConstrainedDelaunay": "components/ConstrainedDelaunay.coffee",
-      "Delaunay": "components/Delaunay.coffee"
+      "Delaunay": "components/Delaunay.coffee",
+      "Voronoi": "components/Voronoi.coffee"
     }
   },
   "json": [

@@ -43,7 +43,6 @@ exports.getComponent = ->
         items: ({'type': 'point', 'x': v[i+j][0], 'y': v[i+j][1]} for j in [0...3])
       paths.push path
 
-    console.log 'paths', paths
     c.outPorts.paths.send paths
 
   c

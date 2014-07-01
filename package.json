@@ -45,7 +45,8 @@
   "noflo": {
     "components": {
       "ConstrainedDelaunay": "components/ConstrainedDelaunay.coffee",
-      "Delaunay": "components/Delaunay.coffee"
+      "Delaunay": "components/Delaunay.coffee",
+      "Voronoi": "components/Voronoi.coffee"
     }
   }
 }
