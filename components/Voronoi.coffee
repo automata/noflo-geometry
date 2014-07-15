@@ -56,33 +56,18 @@ exports.getComponent = ->
     diagram = voronoi.compute(sites, bbox)
 
     paths = []
-    for site in sites
-      cell = diagram.cells[site.voronoiId]
-      if cell
-        halfedges = cell.halfedges
-        len = halfedges.length
-        if len > 2
-          points = (halfedge.getEndpoint() for halfedge in halfedges)
-
-          center = site
-          items = []
-          for i in [0...points.length]
-            point = points[i]
-            if (i+1) == points.length
-              next = points[0]
-            else
-              next = points[i+1]
-            
-            vectorx = (next.x - point.x) / 2
-            vectory = (next.y - point.y) / 2
-            px = point.x + vectorx
-            py = point.y + vectory
-
-            items.push {type: 'point', 'x': px, 'y': py}
-          path =
-            type: 'path',
-            items: items
-          paths.push path
+    for cell in diagram.cells
+      points = []
+      for halfedge in cell.halfedges
+        endpoint = halfedge.getEndpoint()
+        points.push
+          type: 'point'
+          x: endpoint.x
+          y: endpoint.y
+      if points.length > 0
+        paths.push
+          type: 'path'
+          items: points
 
     c.outPorts.paths.send paths
 
