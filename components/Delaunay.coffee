@@ -4,23 +4,15 @@ Delaunay = require '../vendor/delaunay.js'
 exports.getComponent = ->
   c = new noflo.Component
   c.icon = 'toggle-up'
-  c.description = 'Calculates de Delaunay triangulation of given points'
+  c.description = 'Calculates Delaunay Triangulation for given points'
   
-  c.x = null
-  c.y = null
+  c.points = null
 
-  c.inPorts.add 'x',
+  c.inPorts.add 'points',
     datatype: 'array'
     process: (event, data) ->
       return unless event is 'data'
-      c.x = data
-      c.compute()
-
-  c.inPorts.add 'y',
-    datatype: 'array'
-    process: (event, data) ->
-      return unless event is 'data'
-      c.y = data
+      c.points = data
       c.compute()
 
   c.outPorts.add 'paths',
@@ -28,10 +20,10 @@ exports.getComponent = ->
 
   c.compute = ->
     return unless c.outPorts.paths.isAttached()
-    return unless c.x? and c.y? and c.x.length > 2
+    return unless c.points? and c.points.length > 2
 
-    vertices = ([c.x[i], c.y[i]] for i in [0...c.x.length])
-
+    vertices = ([point.x, point.y] for point in c.points)
+    console.log c.points, vertices
     ids = Delaunay.triangulate vertices
 
     v = (vertices[i] for i in ids)
